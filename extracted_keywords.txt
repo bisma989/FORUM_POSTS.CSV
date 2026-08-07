@@ -1,0 +1,17 @@
+=== Extracted Keywords Output ===
+
+--- Post 1 ---
+Text: Just deployed our new Flask backend and Ollama AI chatbot for Glaxit Software House! Performance is incredible.
+spaCy Keywords: ['new', 'house', 'ai', 'chatbot', 'software', 'ollama', 'backend', 'flask', 'deploy', 'performance', 'incredible', 'glaxit']
+NLTK Keywords:  ['new', 'house', 'chatbot', 'software', 'ollama', 'backend', 'flask', 'performance', 'incredible', 'glaxit', 'deployed']
+
+--- Post 2 ---
+Text: Learning Natural Language Processing with spaCy and NLTK is amazing for text preprocessing and keyword extraction.
+spaCy Keywords: ['language', 'processing', 'amazing', 'nltk', 'extraction', 'natural', 'learn', 'keyword', 'text', 'preprocessing']
+NLTK Keywords:  ['language', 'text', 'processing', 'amazing', 'learning', 'nltk', 'extraction', 'natural', 'keyword', 'spacy', 'preprocessing']
+
+--- Post 3 ---
+Text: Looking for recommendations on building scalable APIs using Python and optimizing database connection latency.
+spaCy Keywords: ['connection', 'api', 'optimize', 'recommendation', 'python', 'database', 'look', 'latency', 'scalable', 'build']
+NLTK Keywords:  ['connection', 'using', 'apis', 'building', 'python', 'database', 'optimizing', 'latency', 'recommendations', 'scalable', 'looking']
+
