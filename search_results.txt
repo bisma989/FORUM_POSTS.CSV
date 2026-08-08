@@ -1,0 +1,4 @@
+Query: 'update broke game'
+----------------------------------------
+Score: 0.6163 | Post: The latest patch caused major bugs and crashed my game.
+Score: 0.4280 | Post: Server update deployment failed this morning.
