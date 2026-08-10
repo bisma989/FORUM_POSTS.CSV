@@ -1,32 +1,29 @@
-import os
-from src.keyword_extractor import extract_keywords_spacy, extract_keywords_nltk
+from fastapi import FastAPI, HTTPException
+from app.schemas import SentimentRequest, SentimentResponse
+from app.model import model_service
 
-def save_keywords_to_file(posts, output_file="extracted_keywords.txt"):
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write("=== Extracted Keywords Output ===\n\n")
-        for idx, post in enumerate(posts, 1):
-            spacy_kw = extract_keywords_spacy(post)
-            nltk_kw = extract_keywords_nltk(post)
-            
-            f.write(f"--- Post {idx} ---\n")
-            f.write(f"Text: {post}\n")
-            f.write(f"spaCy Keywords: {spacy_kw}\n")
-            f.write(f"NLTK Keywords:  {nltk_kw}\n\n")
-    print(f"Success! Keywords saved to {output_file}")
+app = FastAPI(
+    title="Sentiment Analysis Microservice",
+    description="AI Internees Week 7 Task: Turning a sentiment model into a FastAPI endpoint.",
+    version="1.0.0"
+)
 
-def main():
-    # Direct root folder wali post.txt file
-    post_file = "post.txt"
-    
-    if not os.path.exists(post_file):
-        print(f"Error: {post_file} file nahi mili root folder mein!")
-        return
+@app.get("/", tags=["Health Check"])
+def read_root():
+    return {"message": "Welcome to the Sentiment Analysis API! Head over to /docs for interactive testing."}
 
-    with open(post_file, "r", encoding="utf-8") as f:
-        posts = [line.strip() for line in f.readlines() if line.strip()]
-    
-    # Run and save to file
-    save_keywords_to_file(posts)
-
-if __name__ == "__main__":
-    main()
+@app.post("/predict", response_model=SentimentResponse, tags=["Prediction"])
+def predict_sentiment(payload: SentimentRequest):
+    """
+    Endpoint to predict sentiment from post text.
+    - **text**: The body of the post you want analyzed.
+    """
+    try:
+        result = model_service.predict(payload.text)
+        return {
+            "text": payload.text,
+            "sentiment": result["sentiment"],
+            "confidence": result["confidence"]
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Inference failed: {str(e)}")
