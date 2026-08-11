@@ -1,0 +1,6 @@
+{
+    "total_samples": 4,
+    "false_positives": 2,
+    "sarcasm_cases": 1,
+    "ambiguous_cases": 2
+}
